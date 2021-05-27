@@ -86,17 +86,8 @@ def mc_normal(data, S0 = -1, K = -1, r = -1, M = -1, I = -1, retornar = -1):
 
     sigma = data.std()*(252**0.5)
     sigma = sigma[0]
-    
-    #Usar a função is_normal para verificar com o teste de Jarque-Bera se a distribuição dos retornos é normal
-    #Caso a distribuição NÃO for normal, então usamos a ampliação de cornish-fisher para adaptar o z:
-    if is_normal(data) == False:
-        
-        S = S0 * np.exp(np.cumsum((r - 0.5 * sigma ** 2) * (T/M) + sigma * math.sqrt(T/M) * 
-                                  cornish(data, np.random.standard_normal((M + 1, I))), axis=0))
-        
-    #Caso a distribuição for normal, então:
-    else:
-        S = S0 * np.exp(np.cumsum((r - 0.5 * sigma ** 2) * (T/M) + sigma * math.sqrt(T/M) * 
+
+    S = S0 * np.exp(np.cumsum((r - 0.5 * sigma ** 2) * (T/M) + sigma * math.sqrt(T/M) * 
                                   np.random.standard_normal((M + 1, I)), axis=0))
     
     if retornar == -1:
@@ -244,15 +235,9 @@ def exotica(data, S0 = -1, K = -1, r = -1, M = -1, I = -1, retornar = -1):
     sigma = data.std()*(252**0.5)
     sigma = sigma[0]
     
-    #Usar a função is_normal para verificar com o teste de Jarque-Bera se a distribuição dos retornos é normal
-    #Caso a distribuição NÃO for normal, então usamos a ampliação de cornish-fisher para adaptar o z:
-    if is_normal(data) == False:
-        S = S0 * np.exp(np.cumsum((r - 0.5 * sigma ** 2) * (T/M) + sigma * math.sqrt(T/M) * 
-                                  cornish(data, np.random.standard_normal((M + 1, I))), axis=0))
-        
-    #Caso a distribuição for normal, então:
-    else:
-        S = S0 * np.exp(np.cumsum((r - 0.5 * sigma ** 2) * (T/M) + sigma * math.sqrt(T/M) * 
+
+
+    S = S0 * np.exp(np.cumsum((r - 0.5 * sigma ** 2) * (T/M) + sigma * math.sqrt(T/M) * 
                                   np.random.standard_normal((M + 1, I)), axis=0))
     
     if retornar == -1:
@@ -302,15 +287,8 @@ def binaria(data, S0 = -1, K = -1, recompensa =-1, r = -1, M = -1, I = -1, retor
     sigma = data.std()*(252**0.5)
     sigma = sigma[0]
     
-    #Usar a função is_normal para verificar com o teste de Jarque-Bera se a distribuição dos retornos é normal
-    #Caso a distribuição NÃO for normal, então usamos a ampliação de cornish-fisher para adaptar o z:
-    if is_normal(data) == False:
-        S = S0 * np.exp(np.cumsum((r - 0.5 * sigma ** 2) * (T/M) + sigma * math.sqrt(T/M) * 
-                                  cornish(data, np.random.standard_normal((M + 1, I))), axis=0))
-        
-    #Caso a distribuição for normal, então:
-    else:
-        S = S0 * np.exp(np.cumsum((r - 0.5 * sigma ** 2) * (T/M) + sigma * math.sqrt(T/M) * 
+
+    S = S0 * np.exp(np.cumsum((r - 0.5 * sigma ** 2) * (T/M) + sigma * math.sqrt(T/M) * 
                                   np.random.standard_normal((M + 1, I)), axis=0))
     
     if retornar == -1:
